@@ -1,0 +1,37 @@
+﻿@model registration001.Models.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h1 align="center">S-123</h1>
+    <h2 align="center"> as simple as 1 2 3 </h2>
+    <marquee>@ViewBag.Greeting World (from the view)</marquee>
+
+    <div align="center">
+        @using (Html.BeginForm())
+        {
+            <p>Your email: @Html.TextBoxFor(x => x.Email) </p>
+            <p>Your password: @Html.TextBoxFor(x => x.Password)</p>
+            <input type="submit" value="entrance" />
+        }
+    </div>
+
+
+    <!-- ссылка на метод регистрации-->
+    <div align="center">
+        <!-- текст / действие то бишь отсылка к методу контролера-->
+        @Html.ActionLink("Registration", "RegistrationForm")
+    </div>
+
+
+</body>
+</html>

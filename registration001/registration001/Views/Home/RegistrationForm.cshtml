@@ -1,0 +1,33 @@
+﻿@model registration001.Models.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RegistrationForm</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+        {
+            <p>Your name: @Html.TextBoxFor(x => x.Name) </p>
+            <p>Your email: @Html.TextBoxFor(x => x.Email)</p>
+            <p>Your password: @Html.TextBoxFor(x => x.Password)</p>
+            <p>
+                Are u man?
+                @Html.DropDownListFor(x => x.maleGenger, new[] {
+new SelectListItem() {Text = "Yep", Value =
+bool.TrueString},
+new SelectListItem() {Text = "Nope", Value = bool.FalseString}
+}, "Choose a gender")
+            </p>
+            <input type="submit" value="continue"/>
+        }
+    </div>
+</body>
+</html>
