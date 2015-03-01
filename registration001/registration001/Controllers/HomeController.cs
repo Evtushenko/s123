@@ -65,17 +65,22 @@ namespace registration001.Controllers
         [HttpPost]
         public ViewResult RegistrationForm(User userResponse)
         {
-            // на этом моменте я получил данные с формы регистрации, здесь они должны куда-то сохраниться
-            // txt + Json пойдет
+        // нет проверки на одинаковые логины и email в бд
+        // тут вроде что-то есть http://habrahabr.ru/post/129398/
+            if (ModelState.IsValid)
+            {
+                // Пишем в файлы данные с формы в формате Json, добавляем в конец
+                List<string> lines = new List<string>();
+                lines.Add(System.Web.Helpers.Json.Encode(userResponse));
+                string[] slot = lines.ToArray();
+                System.IO.File.AppendAllLines(@"~Content/allUsers.txt", slot);
 
-            // Пишем в файлы данные с формы в формате Json, добавляем в конец
-            List<string> lines = new List<string>();
-            lines.Add(System.Web.Helpers.Json.Encode(userResponse));
-            string[] slot = lines.ToArray();
-            System.IO.File.AppendAllLines(@"c:/temp/allUsers.txt", slot);
-
-            // TODO: Email response to the party organizer
-            return View("Thanks", userResponse);
+                return View("Thanks", userResponse);
+            }
+            else
+            {
+                return View();
+            }
         }
 
     }
