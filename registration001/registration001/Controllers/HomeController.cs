@@ -66,14 +66,14 @@ namespace registration001.Controllers
         public ViewResult RegistrationForm(User userResponse)
         {
         // нет проверки на одинаковые логины и email в бд
-        // тут вроде что-то есть http://habrahabr.ru/post/129398/
+        // тут мб есть что http://habrahabr.ru/post/129398/
             if (ModelState.IsValid)
             {
                 // Пишем в файлы данные с формы в формате Json, добавляем в конец
                 List<string> lines = new List<string>();
                 lines.Add(System.Web.Helpers.Json.Encode(userResponse));
                 string[] slot = lines.ToArray();
-                System.IO.File.AppendAllLines(@"~Content/allUsers.txt", slot);
+                System.IO.File.AppendAllLines(@"c:/temp/allUsers.txt", slot);
 
                 return View("Thanks", userResponse);
             }
